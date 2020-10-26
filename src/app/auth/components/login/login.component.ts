@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,8 +9,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    email : new FormControl(),
-    password : new FormControl()
+    email : new FormControl('', Validators.required),
+    password : new FormControl('', [Validators.required , Validators.minLength(6)])
   });
   constructor() { }
   

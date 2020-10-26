@@ -5,18 +5,27 @@
     <form [formGroup]= "loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="logusername">email</label>
-        <input type="email" class="form-control" id="logusername" placeholder="Enter email" formControlName="email">
+        <input type="email" class="form-control" id="logusername" placeholder="Enter email" formControlName="email"
+        [ngClass]="{'is-invalid':loginForm.get('email').errors && loginForm.get('email').touched}">
       </div>
+      <div *ngIf="loginForm.get('email').hasError('required')" class="alert alert-danger">email is required</div>
 
       <div class="form-group">
         <label for="logPassword">Password</label>
-        <input type="password" class="form-control" id="logPassword" placeholder="Password" formControlName="password">
+        <input type="password" class="form-control" id="logPassword" placeholder="Password" formControlName="password" 
+        [ngClass]="{'is-invalid':loginForm.get('password').errors && loginForm.get('password').touched}">
       </div>
+      <div *ngIf="loginForm.get('password').hasError('required')" class="alert alert-danger">password is required</div>
+      <div *ngIf="loginForm.get('password').hasError('minlength')" class="alert alert-danger">password min 6 char</div>
 
       <div class="form-check">
         <a [routerLink]="['/reset']">froget password</a>
       </div>
-      <button type="submit" class="btn btn-primary">login <i class="fas fa-sign-in-alt"></i></button>
+      <div class="from-group">
+        <button type="submit" class="btn btn-primary col-md-12">login <i class="fas fa-sign-in-alt"></i></button>
+      </div>
+      {{loginForm.status}}
     </form>
   </div>
 </div>
+<!--[ngclass]="{is-invalid:loginform.get('password').errors && loginform.get('password').touched}"-->
