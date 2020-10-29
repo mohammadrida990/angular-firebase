@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FireBaseService } from 'src/app/shared/services/firebase.service';
 
 
 @Component({
@@ -12,13 +13,13 @@ export class LoginComponent implements OnInit {
     email : new FormControl('', Validators.required),
     password : new FormControl('', [Validators.required , Validators.minLength(6)])
   });
-  constructor() { }
+  constructor( private firebaseService: FireBaseService) { }
   
   ngOnInit() {
   }
 
-  onSubmit(){
-
+  onLogin(){
+    this.firebaseService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value);
   }
 
   
