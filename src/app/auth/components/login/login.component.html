@@ -22,7 +22,7 @@
         <a [routerLink]="['/reset']">froget password</a>
       </div>
       <div class="from-group">
-        <button type="submit" class="btn btn-primary col-md-12">login <i class="fas fa-sign-in-alt"></i></button>
+        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary col-md-12">login <i class="fas fa-sign-in-alt"></i></button>
       </div>
       {{loginForm.status}}
     </form>

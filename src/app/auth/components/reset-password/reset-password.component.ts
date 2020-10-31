@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FireBaseService } from 'src/app/shared/services/firebase.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fbService : FireBaseService) { }
 
   ngOnInit() {
   }
 
+  logout(){
+    this.fbService.logout();
+  }
 }

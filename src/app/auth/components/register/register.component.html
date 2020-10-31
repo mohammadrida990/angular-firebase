@@ -2,24 +2,31 @@
 <div class="row">
   <div class="col-md-6 offset-md-3 mt-4">
     <h3>register new user</h3>
-    <form>
-      <div class="form-group">
-        <label for="regusername">username</label>
-        <input type="text" class="form-control" id="regusername" placeholder="Enter username">
-      </div>
+    <form [formGroup]= "registerForm">
 
       <div class="form-group">
         <label for="regEmail">email</label>
-        <input type="email" class="form-control" id="regEmail" placeholder="email">
+        <input type="email" class="form-control" id="regEmail" placeholder="email" formControlName="email" (blur)="compareEmail(registerForm.controls.email.value)">
+      </div>
+      <div class="alert alert-danger" *ngIf="errorEmail" >
+        email is used
       </div>
 
       <div class="form-group">
         <label for="regPassword">Password</label>
-        <input type="password" class="form-control" id="regPassword" placeholder="Password">
+        <input type="password" class="form-control" id="regPassword" placeholder="Password" formControlName="password">
+      </div>
+
+      <div class="form-group">
+        <label for="confRegPassword">confRegPassword</label>
+        <input type="password" class="form-control" id="confRegPassword" placeholder="confirm Password" formControlName="confpassword" (keyup)="comparePass()" >
+      </div>
+      <div class="alert alert-danger"  *ngIf="errorPass">
+        password dont match
       </div>
 
       
-      <button type="submit" class="btn btn-primary">register <i class="fas fa-sign-in-alt"></i></button>
+      <button [disabled]="registerForm.invalid" class="btn btn-primary" (click)="onRegister()">register <i class="fas fa-sign-in-alt"></i></button>
     </form>
   </div>
 </div>
